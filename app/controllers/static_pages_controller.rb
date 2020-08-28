@@ -3,4 +3,7 @@ class StaticPagesController < ApplicationController
     @topic_count = Topic.all.count
     @spreadsheet_info = SheetsClient.new.get_rows
   end
+
+  def test
+  end
 end
