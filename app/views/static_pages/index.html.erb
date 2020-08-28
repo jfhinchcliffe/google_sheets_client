@@ -1,2 +1,12 @@
 <h1>Placeholder</h1>
 <h2>Topic Count: <%= @topic_count %></h2>
+<%= ENV['TEST'] %>
+<table>
+  <% @spreadsheet_info.each do |row| %>
+    <tr>
+      <% row.each do |cell| %>
+        <td><%= cell %></td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>
