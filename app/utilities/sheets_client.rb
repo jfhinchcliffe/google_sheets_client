@@ -18,17 +18,11 @@ class SheetsClient
 
   SPREADSHEET_SCOPE = 'https://www.googleapis.com/auth/spreadsheets'.freeze
 
-  def rows(spreadsheet_id = '1eu1Dk67gKnrIgQQ9Fm0Y-RCMzRfZf1UaTQzEt7hjWp0', range = 'Sheet1!A1:E')
-    sheet
-      .get_spreadsheet_values(spreadsheet_id, range)
-      .values
-  end
-
-  private
-
   def sheet
     authorise_service(sheet_service)
   end
+
+  private
 
   def authorise_service(service)
     service.authorization = Google::Auth::ServiceAccountCredentials.make_creds(
