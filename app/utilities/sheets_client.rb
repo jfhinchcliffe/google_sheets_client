@@ -18,24 +18,27 @@ class SheetsClient
 
   SPREADSHEET_SCOPE = 'https://www.googleapis.com/auth/spreadsheets'.freeze
 
-  def rows
-    content = sheet_service
-
-    content.authorization = Google::Auth::ServiceAccountCredentials.make_creds(
-      json_key_io: File.open(creds_file),
-      scope: SPREADSHEET_SCOPE)
-
-    content.authorization.fetch_access_token!
-
-    spreadsheet_id = '1eu1Dk67gKnrIgQQ9Fm0Y-RCMzRfZf1UaTQzEt7hjWp0'
-    range = 'Sheet1!A1:E'
-
-    response = content.get_spreadsheet_values(spreadsheet_id, range)
-
-    response.values
+  def rows(spreadsheet_id = '1eu1Dk67gKnrIgQQ9Fm0Y-RCMzRfZf1UaTQzEt7hjWp0', range = 'Sheet1!A1:E')
+    sheet
+      .get_spreadsheet_values(spreadsheet_id, range)
+      .values
   end
 
   private
+
+  def sheet
+    authorise_service(sheet_service)
+  end
+
+  def authorise_service(service)
+    service.authorization = Google::Auth::ServiceAccountCredentials.make_creds(
+      json_key_io: File.open(creds_file),
+      scope: SPREADSHEET_SCOPE)
+
+    service.authorization.fetch_access_token!
+
+    service
+  end
 
   def sheet_service
     Google::Apis::SheetsV4::SheetsService.new
