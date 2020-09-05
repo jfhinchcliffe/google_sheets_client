@@ -94,6 +94,10 @@ GEM
       multi_json (~> 1.11)
       os (>= 0.9, < 2.0)
       signet (~> 0.14)
+    graphiql-rails (1.7.0)
+      railties
+      sprockets-rails
+    graphql (1.11.4)
     httpclient (2.8.3)
     i18n (1.8.5)
       concurrent-ruby (~> 1.0)
@@ -246,6 +250,8 @@ DEPENDENCIES
   byebug
   dotenv-rails
   google-api-client (~> 0.34)
+  graphiql-rails
+  graphql
   jbuilder (~> 2.7)
   listen (~> 3.2)
   pg (>= 0.18, < 2.0)

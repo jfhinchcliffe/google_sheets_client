@@ -7,6 +7,9 @@ group :development, :test do
   gem 'rspec-rails', '~> 4.0.1'
 end
 
+gem "graphiql-rails"
+gem 'graphql'
+
 gem 'pry-rails', :group => :development
 
 gem 'google-api-client', '~> 0.34'
@@ -53,3 +56,5 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem 'graphiql-rails', group: :development
