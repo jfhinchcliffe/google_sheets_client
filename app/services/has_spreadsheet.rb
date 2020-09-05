@@ -1,11 +1,11 @@
 module HasSpreadsheet
 
-  def snoop
-    "SNOOOP"
+  def all_column_values_for(row_header)
+    sheet_service.column_by_title(row_header)
   end
 
-  def all(row_header)
-    sheet_service.column_by_title(row_header)
+  def all_rows_except_title
+    sheet_service.all_rows_except_title
   end
 
   private

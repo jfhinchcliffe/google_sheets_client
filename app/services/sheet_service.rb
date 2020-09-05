@@ -14,6 +14,11 @@ class SheetService
     end
   end
 
+  def all_rows_except_title
+    rows.drop(1)
+  end
+
+  # TODO: Dynamically get all rows rather than pass 'range'
   def rows(range = 'Sheet1!A1:E')
     get_spreadsheet_data('1eu1Dk67gKnrIgQQ9Fm0Y-RCMzRfZf1UaTQzEt7hjWp0', range)
   end

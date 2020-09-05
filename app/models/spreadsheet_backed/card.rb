@@ -1,9 +1,9 @@
 module SpreadsheetBacked
-  class Topic
+  class Card
     extend HasSpreadsheet
 
     def self.all
-      all_column_values_for("Topic")
+      all_rows_except_title
     end
 
   end

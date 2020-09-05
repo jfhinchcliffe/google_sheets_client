@@ -1,7 +1,7 @@
 class StaticPagesController < ApplicationController
   def index
-    @topic_count = Topic.all.count
-    @spreadsheet_info = SheetService.new.rows
+    @topic_count = SpreadsheetBacked::Topic.all.count
+    @spreadsheet_info = SpreadsheetBacked::Card.all
   end
 
   def test
