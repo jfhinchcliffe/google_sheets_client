@@ -3,6 +3,7 @@ class GraphqlController < ApplicationController
   # This allows for outside API access while preventing CSRF attacks,
   # but you'll have to authenticate your user separately
   protect_from_forgery with: :null_session
+  before_action :authenticated?
 
   def execute
     variables = prepare_variables(params[:variables])
@@ -46,5 +47,18 @@ class GraphqlController < ApplicationController
     logger.error e.backtrace.join("\n")
 
     render json: { errors: [{ message: e.message, backtrace: e.backtrace }], data: {} }, status: 500
+  end
+
+  def authenticated?
+    return true if has_valid_api_key?
+
+    render json: { errors: [{ message: "Unauthorised..." }], data: {} }, status: 500
+  end
+
+  def has_valid_api_key?
+    return true if Rails.env.development?
+    return true if request.authorization == "Bearer #{ENV["GRAPHQL_API_AUTH_HEADER_TOKEN"]}"
+
+    return false
   end
 end
